@@ -8,12 +8,16 @@ int main(void)
     //--------------------------------------------------------------------------------------
     const int screenWidth = 1280;
     const int screenHeight = 720;
-    InitWindow(screenWidth, screenHeight, "Meteors");
+    InitWindow(screenWidth, screenHeight, "snake");
     SetTargetFPS(60); 
     //--------------------------------------------------------------------------------------
     // Initialization
 
-    Texture2D meteor = LoadTexture("assets/meteor01.png"); // Load texture from file into GPU memory (VRAM)
+    Texture2D head = LoadTexture("assets/head.png"); // Load texture from file into GPU memory (VRAM)
+    Texture2D body = LoadTexture("assets/body.png");
+    Texture2D body_curved = LoadTexture("assets/body_curved.png");
+    Texture2D tail = LoadTexture("assets/tail.png");
+
     //--------------------------------------------------------------------------------------
 
     // Main game loop
@@ -30,8 +34,14 @@ int main(void)
 
         ClearBackground(RAYWHITE);
 
-        DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
-        DrawTextureV(meteor, Vector2{ 100,100 }, WHITE);
+        
+        DrawTexturePro(head,Vector2{100,0},180,1, WHITE);
+        DrawTexturePro(tail, Vector2{ 100,50 },180,1, WHITE);
+        DrawTexturePro(body, Vector2{ 100,112 },90,1,WHITE);
+        DrawTexturePro(body_curved, Vector2{ 100,300 },0,1,WHITE);
+
+
+
         EndDrawing();
         //----------------------------------------------------------------------------------
     }
