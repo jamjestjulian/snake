@@ -1,5 +1,6 @@
 #include <iostream>
 #include "raylib.h"
+#include "Game.h"
 
 
 int main(void)
@@ -12,34 +13,33 @@ int main(void)
     SetTargetFPS(60); 
     //--------------------------------------------------------------------------------------
     // Initialization
-
-    Texture2D head = LoadTexture("assets/head.png"); // Load texture from file into GPU memory (VRAM)
-    Texture2D body = LoadTexture("assets/body.png");
-    Texture2D body_curved = LoadTexture("assets/body_curved.png");
-    Texture2D tail = LoadTexture("assets/tail.png");
+    Game game(10, 10);
+    
+    Player::head = LoadTexture("assets/head.png"); // Load texture from file into GPU memory (VRAM)
+    Player::body = LoadTexture("assets/body.png");
+    Player::body_curved = LoadTexture("assets/body_curved.png");
+    Player::tail = LoadTexture("assets/tail.png");
 
     //--------------------------------------------------------------------------------------
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        // Update
+        // Update      
         //----------------------------------------------------------------------------------
-        // TODO: Update your variables here
+        game.update(GetFrameTime());
+
+        
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
-
+        game.draw(screenWidth, screenHeight);
         ClearBackground(RAYWHITE);
 
         
-        DrawTexturePro(head,Vector2{100,0},180,1, WHITE);
-        DrawTexturePro(tail, Vector2{ 100,50 },180,1, WHITE);
-        DrawTexturePro(body, Vector2{ 100,112 },90,1,WHITE);
-        DrawTexturePro(body_curved, Vector2{ 100,300 },0,1,WHITE);
-
+        
 
 
         EndDrawing();
